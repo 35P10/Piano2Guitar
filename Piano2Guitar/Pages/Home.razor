@@ -1,0 +1,64 @@
+﻿@page "/"
+
+@using Piano2Guitar.Models;
+@using Piano2Guitar.Services
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<div class="piano">
+    @foreach (var note in pianoNotes)
+    {
+        <button @onclick="() => UpdateCurrentNote(note)" class="tecla">
+            @note.Nombre
+        </button>
+    }
+</div>
+
+<hr />
+@for (int cuerda = 0; cuerda < 6; cuerda++)
+{
+    for (int traste = 0; traste < 15; traste++)
+    {
+        <button class="tecla" style="@(currentNote != null && guitarFretboard[cuerda, traste] == currentNote ? "background-color: red;" : "")">
+            @if(guitarFretboard[cuerda, traste] != null)
+            {
+                @guitarFretboard[cuerda, traste].Nombre;
+            }
+        </button>
+    }
+    <hr/>
+}
+
+@if (currentNote != null)
+{   
+    <p>@currentNote.Nombre</p>
+    <p>@currentNote.Octava</p>
+}
+
+
+
+@code {
+    private Note currentNote = null;
+    private List<Note> pianoNotes = new List<Note>();
+    private Note[,] guitarFretboard = new Note[6, 15];
+
+    protected override void OnInitialized()
+    {
+        foreach (var note in NotesService.ListOfNotes.Values)
+        {
+            pianoNotes.Add(note);
+            foreach(var guitarPosition in note.GuitarPosition)
+            {
+                int cuerda = guitarPosition.Item1 - 1;
+                int traste = guitarPosition.Item2;
+                guitarFretboard[cuerda, traste] = note;
+            }
+        }
+    }
+
+    private void UpdateCurrentNote(Note note) => currentNote = note;
+}
