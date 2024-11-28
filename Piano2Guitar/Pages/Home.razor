@@ -3,7 +3,7 @@
 @using Piano2Guitar.Models;
 @using Piano2Guitar.Services
 
-
+<h1>Piano to Guitar Notes</h1>
 <div class="pianoContainer">
     @foreach (var note in pianoNotes)
     {
@@ -23,9 +23,11 @@
     <div class="guitarContainer_string">
     @for (int traste = 0; traste < 25; traste++)
     {
+        var note = guitarFretboard[cuerda, traste];
         <button 
             class="guitarKey"
-                        style="@(currentNote != null && guitarFretboard[cuerda, traste] == currentNote ? $"background-color: {selectColor};" : $"background-color: {octaveColors[guitarFretboard[cuerda, traste].EsSostenida ? 0 : guitarFretboard[cuerda, traste].Octava - 1]};")">
+            @onclick="() => UpdateCurrentNote(note)"
+            style="@(currentNote != null && note == currentNote ? $"background-color: {selectColor};" : $"background-color: {octaveColors[note.EsSostenida ? 0 : note.Octava - 1]};")">
             @if(guitarFretboard[cuerda, traste] != null)
             {
                 @guitarFretboard[cuerda, traste].Nombre;
@@ -34,6 +36,12 @@
     }
     </div>
 }
+<div class="guitarContainer_none">
+@for (int traste = 0; traste < 25; traste++)
+{
+    <div class="guitarKey_none">@traste</div>
+}
+</div>
 </div>
 
 @if (currentNote != null)

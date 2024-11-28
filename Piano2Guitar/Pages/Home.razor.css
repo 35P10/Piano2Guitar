@@ -21,7 +21,7 @@
 .guitarContainer {
     display: flex;
     flex-direction: column;
-    margin: 50px 0;
+    margin: 50px 0 25px 0;
 }
 
 .guitarContainer hr {
@@ -56,4 +56,21 @@
     height: 50px;
     margin-top: -50px; 
     align-items: center;
+}
+
+.guitarContainer_none {
+    display: flex;
+    gap: 40px;
+    height: 50px;
+    align-items: center;
+}
+
+.guitarKey_none {
+    display: flex;
+    height: inherit;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
