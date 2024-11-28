@@ -24,9 +24,9 @@ jobs:
     - name: Publish .NET Core Project
       run: dotnet publish ./Piano2Guitar/Piano2Guitar.csproj -c Release -o release --nologo
     
-    # changes the base-tag in index.html from '/' to 'MyPortfolio' to match GitHub Pages repository subdirectory
+    # changes the base-tag in index.html from '/' to 'Piano2Guitar' to match GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to Piano2Guitar
-      run: sed -i 's/<base href="\/" \/>/<base href="\/MyPortfolio\/" \/>/g' release/wwwroot/index.html
+      run: sed -i 's/<base href="\/" \/>/<base href="\/Piano2Guitar\/" \/>/g' release/wwwroot/index.html
     
     # copy index.html to 404.html to serve the same file when a file is not found
     - name: copy index.html to 404.html
