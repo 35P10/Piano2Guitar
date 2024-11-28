@@ -1,3 +1,37 @@
+/* /Components/GuitarTabChord.razor.rz.scp.css */
+.chordContainer[b-1896i1icez] {
+    display: flex;
+    width:40px;
+    flex-direction: column;
+}
+
+.chordbutton[b-1896i1icez] {
+        display: block;
+        height: 40px;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        text-align: center;
+    }
+
+.chordContainer_buttonContainer[b-1896i1icez] {
+    display: flex;
+    flex-direction: column;
+}
+
+.chordContainer_buttonContainer_1[b-1896i1icez] , .chordContainer_buttonContainer_2[b-1896i1icez] {
+    display: block;
+    height: 30px;
+}
+
+.chordContainer_buttonContainer_1[b-1896i1icez] {
+    background-color: #0077b6;
+}
+
+.chordContainer_buttonContainer_2[b-1896i1icez] {
+    background-color: #d62828;
+}
 /* /Layout/MainLayout.razor.rz.scp.css */
 .page[b-7tnveee0ty] {
     position: relative;
@@ -236,4 +270,9 @@ main[b-7tnveee0ty] {
     justify-content: center;
     align-items: center;
     position: relative;
+}
+
+.guitarTabContainer[b-bn2a00szun] {
+    display: flex;
+    flex-wrap: wrap;
 }
