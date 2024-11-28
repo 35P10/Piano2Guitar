@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Piano2Guitar",
   "resources": {
-    "hash": "sha256-6qi3bQWoefKb7ZZpSIEQoU3OiYVn7H9GgLYMn1Kkh90=",
+    "hash": "sha256-x3IS40NZINZ3VXlDY6ZVwF3VxZBh3/MhNawBcEq7A7I=",
     "jsModuleNative": {
       "dotnet.native.8.0.11.n1sf6xr5tz.js": "sha256-VdKq87/z5NIxZKmuM+fv38XF+RcEb/bg3jVBwQSfwP4="
     },
@@ -31,7 +31,7 @@
       "Microsoft.Extensions.Primitives.wasm": "sha256-6187ynEahDlSLMBvD4vAmiLpZ3clRb5xu6rM7O8AxNo=",
       "Microsoft.JSInterop.wasm": "sha256-+Rt8iKATTcS4lJwzOVupnY95QLDIoKdW228hSCzBifg=",
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-i8yLC1pzEZMAPAHK2MyunJW81S6Tpyvwka9LDZSylx8=",
-      "Piano2Guitar.wasm": "sha256-RmnPt83AtXAf0PfTTPrqEz0YlCIoiQFDbjb15z+Ow3c=",
+      "Piano2Guitar.wasm": "sha256-kBPiE476oQg7IuMdYkdBN2wbv6p0Kom5qlk7BboFhpk=",
       "System.Collections.Concurrent.wasm": "sha256-KIu0CYFvTS4vC+hMDEaJ7dJ378ocrJAOcMDBvsWCwZI=",
       "System.Collections.wasm": "sha256-9AiopX2dzFwvwWngHZWfZ+4EdHKnGEbQxYuylJ+FCz4=",
       "System.ComponentModel.wasm": "sha256-ZQumzHtMyxvojdF7oHBBb8pLXJYa4ErOf6oZOZey1OU=",
