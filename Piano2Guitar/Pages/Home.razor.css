@@ -1,0 +1,59 @@
+﻿.pianoContainer {
+    display: flex;
+    height: 100px;
+}
+
+.pianoKey, .pianoKeySharp {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width:40px;
+}
+
+.pianoKeySharp {
+    margin-left: -20px;
+    margin-right: -20px;
+    z-index: 1;
+    height: 70%;
+    color: snow;
+}
+
+.guitarContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0;
+}
+
+.guitarContainer hr {
+    margin: 25px 0 25px 60px;
+}
+
+.guitarKey {
+    display: flex;
+    height: inherit;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid blue;
+    border-radius: 25px;
+    color: snow;
+    position: relative;
+}
+
+.guitarKey::after {
+    content: "";
+    border-left: 2px solid blue;
+    height: 51px;
+    position: absolute;
+    left: 150%;
+    top: 0%;
+}
+
+.guitarContainer_string {
+    display: flex;
+    gap: 40px;
+    height: 50px;
+    margin-top: -50px; 
+    align-items: center;
+}
