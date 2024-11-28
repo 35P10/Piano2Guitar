@@ -1,0 +1,33 @@
+﻿.chordContainer {
+    display: flex;
+    width:40px;
+    flex-direction: column;
+}
+
+.chordbutton {
+        display: block;
+        height: 40px;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        text-align: center;
+    }
+
+.chordContainer_buttonContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.chordContainer_buttonContainer_1 , .chordContainer_buttonContainer_2 {
+    display: block;
+    height: 30px;
+}
+
+.chordContainer_buttonContainer_1 {
+    background-color: #0077b6;
+}
+
+.chordContainer_buttonContainer_2 {
+    background-color: #d62828;
+}

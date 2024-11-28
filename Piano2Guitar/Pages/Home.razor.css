@@ -74,3 +74,8 @@
     align-items: center;
     position: relative;
 }
+
+.guitarTabContainer {
+    display: flex;
+    flex-wrap: wrap;
+}

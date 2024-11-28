@@ -1,9 +1,13 @@
 ﻿@page "/"
 
 @using Piano2Guitar.Models;
-@using Piano2Guitar.Services
+@using Piano2Guitar.Services;
+@using Piano2Guitar.Components;
 
 <h1>Piano to Guitar Notes</h1>
+This interactive visualizer showcases the relationship between piano notes and the guitar fretboard. It also allows for the creation of tabs, though it is still in a basic stage.I hope it serves as a helpful tool for others.
+I dedicate this project to my aunt Ursula, and I hope she recovers soon. :)
+<hr />
 <div class="pianoContainer">
     @foreach (var note in pianoNotes)
     {
@@ -23,10 +27,11 @@
     <div class="guitarContainer_string">
     @for (int traste = 0; traste < 25; traste++)
     {
+        var position = new Tuple<int, int>(cuerda + 1,traste);
         var note = guitarFretboard[cuerda, traste];
         <button 
             class="guitarKey"
-            @onclick="() => UpdateCurrentNote(note)"
+            @onclick="() => UpdateCurrentGuitarNote(note, position)"
             style="@(currentNote != null && note == currentNote ? $"background-color: {selectColor};" : $"background-color: {octaveColors[note.EsSostenida ? 0 : note.Octava - 1]};")">
             @if(guitarFretboard[cuerda, traste] != null)
             {
@@ -49,6 +54,34 @@
     <p>Note: @currentNote.Nombre @currentNote.Octava</p>
 }
 
+<button @onclick="() => ToggleRecord()">
+    @if(isRecord)
+    {
+        <p>Stop Record</p>
+    }
+    else
+    {
+        <p>Record</p>
+    }
+</button>
+
+<div class="guitarTabContainer">
+@foreach (var note in chords)
+{
+    <GuitarTabChord Chord=@note
+        DeleteChord=@RemoveChord
+        SelectChord=@SelectChord/>
+}
+
+@if(isRecord)
+{
+        
+    <button @onclick="() => {recordIndex = -1;}">
+    <p>Add note</p>
+</button>
+}
+</div>
+
 @code {
     private string selectColor = "red";
     private string[] octaveColors = new string[]
@@ -62,8 +95,12 @@
     };
 
     private Note currentNote = null;
+    private bool isRecord = false;
+    private int recordIndex = -1;
+    private int numOfChords = 0;
     private List<Note> pianoNotes = new List<Note>();
     private Note[,] guitarFretboard = new Note[6, 25];
+    private List<GuitarChord> chords = new List<GuitarChord>();
 
     protected override void OnInitialized()
     {
@@ -80,4 +117,52 @@
     }
 
     private void UpdateCurrentNote(Note note) => currentNote = note;
+
+    private void UpdateCurrentGuitarNote(Note note, Tuple<int,int> position)
+    {
+        currentNote = note;
+        if(isRecord)
+        {
+            if (recordIndex == -1)
+            {
+                GuitarChord newChord = new GuitarChord(position);
+                numOfChords++;
+                newChord.Id = numOfChords;
+                chords.Add(newChord);
+            }
+
+            else
+            {
+                var selectedChord = chords.FirstOrDefault(cd => cd.Id == recordIndex);
+                if (selectedChord != null)
+                {
+                    selectedChord.AddNote(position);
+                }
+            }
+        }
+    }
+
+    private void RemoveChord(int id)
+    {
+        var chord2del = chords.FirstOrDefault(cd => cd.Id == id);
+        if (chord2del != null)
+        {
+            chords.Remove(chord2del);
+            recordIndex = -1;
+        }
+    }
+
+    private void SelectChord(int id)
+    {
+        var chord2select = chords.FirstOrDefault(cd => cd.Id == id);
+        if (chord2select != null)
+        {
+            recordIndex = chord2select.Id;
+        }
+    }
+
+    private void ToggleRecord() {
+        isRecord = !isRecord;
+        recordIndex = -1;
+    }
 }

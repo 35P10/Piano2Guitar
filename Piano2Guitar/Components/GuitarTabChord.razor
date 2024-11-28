@@ -1,0 +1,55 @@
+﻿@using Piano2Guitar.Models;
+
+<div class="chordContainer">
+@for (int i = 0; i < 6; i++)
+{
+    int _string = i + 1;
+    @if (Chord.Notes[i] != -1)
+    {
+        <button class="chordbutton" @onclick="()=>DeleteNote(_string)">
+                @Chord.Notes[i]
+        </button>
+    }
+    else
+    {
+        <div class="chordbutton">
+            -
+        </div> 
+    }
+}
+<div class="chordContainer_buttonContainer">
+    <button class="chordContainer_buttonContainer_1" onclick=@OnClickSelect>E</button>
+    <button class="chordContainer_buttonContainer_2"  onclick=@OnClickDelete>X</button>
+</div>
+</div>
+
+@code {
+    [Parameter]
+    public GuitarChord Chord { get; set; }
+
+    [Parameter]
+    public EventCallback<int> DeleteChord { get; set; }
+    [Parameter]
+    public EventCallback<int> SelectChord { get; set; }
+
+    private void DeleteNote(int _string)
+    {
+        Chord.DeleteNote(_string);
+    }
+
+    private async Task OnClickSelect()
+    {
+        if (SelectChord.HasDelegate)
+        {
+            await SelectChord.InvokeAsync(Chord.Id);
+        }
+    }
+
+    private async Task OnClickDelete()
+    {
+        if (DeleteChord.HasDelegate)
+        {
+            await DeleteChord.InvokeAsync(Chord.Id);
+        }
+    }
+}
